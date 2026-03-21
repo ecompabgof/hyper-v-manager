@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperV Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>HyperV Manager</h1>
+            <p>Gestionnaire de machines virtuelles Hyper-V</p>
+        </header>
+
+        <main>
+            <!-- Create VM Form -->
+            <section class="card">
+                <h2>Créer une nouvelle machine virtuelle</h2>
+                <form id="createVmForm">
+                    <div class="form-group">
+                        <label for="vmName">Nom de la VM:</label>
+                        <input type="text" id="vmName" name="name" required placeholder="Ex: MyVM">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="memoryMB">Mémoire (MB):</label>
+                        <input type="number" id="memoryMB" name="memoryMB" required min="512" value="2048" placeholder="2048">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cpuCount">Nombre de CPU:</label>
+                        <input type="number" id="cpuCount" name="cpuCount" required min="1" value="2" placeholder="2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diskGB">Taille du disque (GB):</label>
+                        <input type="number" id="diskGB" name="diskGB" required min="1" value="40" placeholder="40">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="switchName">Nom du switch virtuel:</label>
+                        <input type="text" id="switchName" name="switchName" required placeholder="Ex: Default Switch">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isoSelect">ISO (optionnel):</label>
+                        <select id="isoSelect" name="isoSelect">
+                            <option value="">Aucun ISO</option>
+                        </select>
+                        <small class="form-hint">Sélectionnez un ISO pour installer un système d'exploitation</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Créer la VM</button>
+                </form>
+            </section>
+
+            <!-- VM List Section -->
+            <section class="card">
+                <div class="section-header">
+                    <h2>Machines virtuelles</h2>
+                    <button id="refreshBtn" class="btn btn-secondary">Actualiser</button>
+                </div>
+
+                <div id="message" class="message"></div>
+
+                <div class="table-container">
+                    <table id="vmTable">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>État</th>
+                                <th>CPU</th>
+                                <th>Mémoire (MB)</th>
+                                <th>Uptime</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vmTableBody">
+                            <tr>
+                                <td colspan="6" class="loading">Chargement...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+
